@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+     <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600|Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
+    <title>Can You Afford a House?</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="css/styles.css" media="screen">
+      <link rel="stylesheet" href="css/leaflet.css" />
+    <link rel="stylesheet" href="css/globalStyle.css" />
+    <link rel="stylesheet" type="text/css" href="css/odometer-theme-default.css">
+
+    <style>
+		body {
+			font-family: 'Open Sans', sans-serif;
+			color:#666;
+			min-height:1000px;
+		}
+        .container{
+			background-color:white;
+			max-width:800px;
+        }
+		.row{
+			margin-left:0px;
+			margin-right:0px;
+		}
+		.inputOption{
+			height:35px;
+			margin-top:20px;
+			padding-left:10px;
+			background-color:white!important;
+		}
+
+
+		input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
+			-webkit-box-shadow: 0 0 0px 1000px white inset;
+		}
+
+
+
+		@media (max-width: 700px) {
+		#mapWrapper {
+			display:none!important;
+		}
+ 		}
+
+		#visualWrapper {
+			padding:0px 0px 0px 0px;
+		}
+		#mapWrapper {
+			padding:0px 0px 0px 0px;
+		}
+		#mapDiv {
+			margin-top:0px;
+		}
+		#mapLegend {
+			height:60px;
+		}
+
+		.measureHeading {
+			height:40px;
+			font-size:15px;
+			margin-bottom:4px;
+			margin-top:10px;
+			text-align:center;
+		}
+		.chartHeading {
+			height:20px;
+			font-size:15px;
+			margin-bottom:4px;
+		}
+		#householdIncome,
+		#propertyPrice,
+		#savingsOf {
+			color:#007F7F;
+			font-weight:bold;
+			font-size:26px;
+			text-align:center;
+		}
+		.resultsText {
+			color:#007F7F;
+			font-weight:bold;
+			font-size:26px;
+		}
+		.result {
+			background-color:#e7e7e7;
+			padding:0px 0px 0px 0px;
+			margin-bottom:20px;
+		}
+		.ValueUnderline {
+			height:9px;
+			background-color:#007F7F;
+			margin-top:10px;
+			margin-bottom:0px;
+		}
+		.editAssumptions {
+			height:35px;
+			padding-top:6px;
+			width:220px;
+			margin-top:10px;
+			padding-left:10px;
+			padding-bottom:10px;
+			cursor:hand;
+			cursor:pointer;
+		}
+		.editAssumptionsBack {
+			height:35px;
+			padding-top:6px;
+			width:160px;
+			margin-top:10px;
+			padding-left:10px;
+			padding-bottom:10px;
+			cursor:hand;
+			cursor:pointer;
+		}
+		.editAssumptionsReset {
+			height:35px;
+			padding-top:6px;
+			width:95px;
+			margin-top:10px;
+			padding-left:10px;
+			padding-bottom:10px;
+			cursor:hand;
+			cursor:pointer;
+		}
+        #pcGo:hover {
+            cursor:pointer;
+            curser:hand;
+        }
+		.useLocation {
+			cursor:pointer;
+			cursor:hand;
+			background-color:#007F7F!important;
+		}
+
+
+
+		/*css for assumptions*/
+		.unitOfMeasurement {
+			height:30px;
+			width:30px;
+			background-color:#007F7F;
+			color:white;
+			float:left;
+			font-size:18px;
+			padding-left:8px;
+			padding-top:2px;
+		}
+		#stampDutyDisplay {
+			height:30px;
+			width:80px;
+			font-size:18px;
+			padding-left:8px;
+			padding-top:2px;
+			margin-bottom:10px;
+			float:left;
+			border-style: solid;
+            border-width: 1px;
+			border-color:#A9A9A9;
+		}
+		.assumptionOption{
+			margin-top:0px;
+			height:30px;
+			width:80px;
+			margin-bottom:10px;
+		}
+		.unitDescription {
+			margin-bottom:3px;
+			font-size:14px;
+		}
+		.unitName {
+			font-weight:bold;
+			font-size:16px;
+			margin-bottom:3px;
+		}
+
+		/*CSS for chart*/
+		.chart rect {
+		  fill: steelblue;
+		}
+
+		.chart text {
+		  fill: white;
+		  font: 10px sans-serif;
+		  text-anchor: end;
+		}
+
+
+
+
+		/*map css*/
+		  #map{
+			height:450px;
+		  }
+
+
+		  @font-face {
+				font-family: 'open_sanslight';
+				src: url('assets/OpenSans-Light-webfont.woff') format('woff');
+				font-weight: normal;
+				font-style: normal;
+
+			}
+
+			@font-face {
+				font-family: 'open_sansitalic';
+				src: url('assets/OpenSans-Italic-webfont.woff') format('woff');
+				font-weight: normal;
+				font-style: normal;
+
+			}
+
+			@font-face {
+				font-family: 'open_sansregular';
+				src: url('assets/OpenSans-Regular-webfont.woff') format('woff');
+				font-weight: normal;
+				font-style: normal;
+
+			}
+
+			@font-face {
+				font-family: 'open_sanssemibold';
+				src: url('assets/OpenSans-Semibold-webfont.woff') format('woff');
+				font-weight: normal;
+				font-style: normal;
+
+			}
+
+
+		  #map{
+			background:white;
+			width:100%;
+		  }
+
+		  #keydiv {
+			z-index:4;
+			position:absolute;
+			height:300px;
+			right:0px;
+			background:rgba(255,255,255,.75);
+		  }
+		  #mapTitleText {
+			z-index:5;
+			position:absolute;
+			background:rgba(255,255,255,.75);
+		  }
+
+		  #areadrop {
+			z-index:5;
+			position:absolute;
+			width:100%;
+			height:72px;
+			right:0px;
+			background:rgba(255,255,255,.75);
+		  }
+
+			#key path {
+			  display: none;
+
+			}
+
+			#key line {
+			  stroke: #666;
+			  shape-rendering: crispEdges;
+			}
+
+			#key rect {
+			  stroke: #666;
+			  stroke-width:1px;
+			  shape-rendering: crispEdges;
+			}
+
+			#key g {
+				font-size:11px;
+				fill:#666;
+			}
+
+
+			#areaname {
+				text-align:center;
+				height:55px;
+			}
+
+			@media (min-width: 768px) {
+			#areanm
+			{
+				font-size:20px;
+				color:#666;
+				min-width:1%;
+				font-family:open_sanssemibold, Arial, Helvetica, sans-serif;
+				text-align:center;
+			}
+
+			#areainfo
+			{
+
+				font-size:22px;
+				color:#666;
+				font-family:open_sanssemibold, Arial, Helvetica, sans-serif;
+			}
+
+			#areainfo span
+			{
+
+				font-size:18px;
+			}
+			}
+
+			@media (max-width: 767px) {
+			#areanm
+			{
+
+				font-size:16px;
+				color:#666;
+				font-family:open_sanssemibold, Arial, Helvetica, sans-serif;
+
+			}
+
+			#areainfo
+			{
+
+				font-size:16px;
+				color:#666;
+				font-family:open_sanssemibold, Arial, Helvetica, sans-serif;
+
+			}
+
+			#areainfo span
+			{
+
+				font-size:12px;
+			}
+
+
+			}
+
+
+			#chosensel {
+				height:50px;
+			}
+
+			@media (min-width: 768px) {
+
+			#keydiv {
+
+				top:0px;
+				width:130px;
+				height:300px;
+				padding-bottom:20px;
+			}
+
+
+			#key {
+				width:140px;
+			}
+			}
+
+			@media (max-width: 767px) {
+
+			#keydiv {
+
+				width:100%;
+				height:60px;
+				top: 490px;
+			}
+
+			#key {
+				width:100%;
+			}
+			.chosen-container {
+				top: -10px;
+				z-index:1002;
+			}
+			}
+
+
+			.navbar {
+			  min-height: 0px !important;
+			}
+
+			#menu {
+				z-index:1001;
+			}
+
+
+			.picaarticle {
+				font-size:18px;
+
+			}
+
+			.btnEnable {
+				-moz-box-sizing: border-box;
+				box-sizing: border-box;
+				width: 110px;
+				border: none;
+				padding: 6px 0;
+				background-color: #0084d1;
+				font: 700 16px Arial;
+				color: #FFF;
+				filter: inherit;
+				-webkit-appearance: button;
+				cursor: pointer;
+			}
+			#mapPane {
+				padding-left:0px!important;
+				padding-right:0px!important;
+			}
+			#areadrop{
+				display:none!important;
+			}
+
+
+</style>
+</head>
+
+<script src="https://code.jquery.com/jquery-git2.min.js"></script>
+
+<div class="container" style="padding:0px 0px 0px 0px;"><p style="color:#007F7F; font-size:28px; text-align:left; font-weight:bold; margin-bottom:0px;">Where can you afford to buy your first home?</p>
+<div id="toolView" style="display:block; opacity:1;">
+
+	<div id="inputWrapper">
+    <div class="row">
+
+        <form id="pcForm">
+            <input style="float:left; width:200px;" id="pcText" class="picaarticle inputOption" type="text" tabindex="1" placeholder="insert your postcode">
+        </form>
+
+        <div id="pcGo" style="float:left; height:35px; width:50px; margin-right:20px; color:white; background-color:#007F7F; margin-top:20px; padding-top:7px; text-align:center;"> Go </div>
+
+
+        <div class="inputOption useLocation" style="float:left; padding-top:7px; background-color:#007F7F; color:white;">Or use your location <img src="images/locationIcon.png" style="width:11px; height:19px; float:right; margin-left:10px; margin-right:10px;"></div>
+
+        <p id="pcError" style="width:100%; clear:both; padding-top:7px;" class="picaarticle"></p>
+    </div>
+    </div>
+
+   <!-- <div style="height:1px; background-color:#dadada; width:100%; margin-top:10px; margin-bottom:10px;"><!--top bounding line--</div>-->
+
+    <div class="row">
+    	<!-- <div id="visualWrapper" style="display:none; opacity:0;">
+
+        <p id="placeNameDisplay" style="font-size:18px; margin-bottom:0px; margin-top:10px; display:none;">For an entry level* property in this <span id="placeNameName" style="font-size:24px; font-weight:bolder; color:#007F7F;"></span> neighbourhood, you will need an annual household income of around;</p>
+
+
+
+
+            <div id="incomeOfNumber" class="odometer">£0</div>
+            <div id="incomeOf" class="resultsChart" style="margin-bottom:0px;"></div>
+
+
+            <div class="result col-xs-12 col-sm-4" style="border-right-style:solid;border-right-width:6px; border-right-color:white;"><p class="measureHeading">You'll also need savings of around;</p>
+                    <div id="savingsOf" class="odometer">£0</div>
+                    <div class="ValueUnderline"></div>
+            </div>
+            <div class="result col-xs-12 col-sm-4"><p class="measureHeading" style="padding-left:5px; padding-right:5px;">A low to mid priced property cost on average;</p>
+                	<div id="propertyPrice" class="odometer">£0</div>
+                    <div class="ValueUnderline"></div>
+            </div>
+            <div class="result col-xs-12 col-sm-4" style="border-left-style:solid; border-left-width:6px; border-left-color:white;"><p class="measureHeading">Average annual household income was;</p>
+                	<div id="householdIncome" class="odometer">£0</div>
+                    <div class="ValueUnderline"></div>
+            </div>
+
+
+
+    	</div> -->
+
+
+        <div id="mapWrapper" style="opacity:0; height:450px; clear:both; margin-bottom:20px;">
+                        <div id="graphic">Loading graphic...</div>
+                           <div class="row" id="navigation">
+
+                                  <div class="col-sm-12 hidden-xs" id="pills">
+                                  </div>
+
+                                  <div class="col-xs-12 visible-xs">
+                                      <div class="btn-group btn-group col-xs-12" role="group" id="menu">
+
+                                          <button id="varsel" class="btn btn-primary dropdown-toggle btn-block" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">Dropdown<span class="caret"></span>
+                                          </button>
+                                      </div>
+                                  </div>
+
+                           </div>
+
+
+
+
+
+                           <div class="row" style="position: relative;">
+                                  <div id="mapPane" class="col-sm-12 col-xs-12">
+                                    <div id="map">
+
+                                    </div>
+                                  </div>
+                              <div class="row" id="areadrop">
+                                  <div class="col-sm-9 col-xs-12" id="areaname">
+                                        <div id="areanm"></div>
+                                        <div id="areainfo"></div>
+                                  </div>
+
+                              </div>
+                              <div id="mapTitleText"></div>
+                              <div id="keydiv"></div>
+
+                            </div><!-- end row -->
+
+        </div>
+
+
+
+
+       <div id="assumptionWrapper" style="display:none; opacity:0;">
+       <p style="font-size:14px;">*Entry level property refers to the lower quartile property price in a given area.</p>
+       <p style="font-size:14px;">**England & Wales average based on a <span id="footnoteDeposit"></span>% deposit and borrowing <span id="footnoteSalary"></span>x salary.</p>
+
+       <p style="font-size:14px;">This tool makes a number of assumptions when calculating figures. These can be changed to better fit your circumstances.</p>
+       <div class="editAssumptions" style="background-color:#007F7F; color:white;">Change assumptions<img src="images/toolsIcon.png" style="width:22px; height:22px; float:right; margin-right:10px;"></div>
+       <div style="height:1px; background-color:#dadada; width:100%; margin-top:10px; margin-bottom:10px;"><!--bottom bounding line--></div>
+       </div>
+
+
+
+
+
+    </div>
+
+    </div><!--ends toolView-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <!-- edit assumptions-->
+     <div class="row" id="assumptionsView" style="display:none; opacity:0; padding-top:20px;">
+
+
+    <div class="row">
+
+        <form id="pcForm">
+            <p class="unitName">Deposit amount</p>
+                <p class="unitDescription">The amount of the house you want to pay fore right away (usually a minimum of 10%). The more deposit you can afford, the less interest you will pay on the remaining loan.</p>
+                    <div class="unitOfMeasurement">%</div>
+                        <input id="manualDeposit" class="picaarticle inputOption assumptionOption" type="number" tabindex="1" placeholder="15" min="5" max="40">
+
+            <p class="unitName">Conveyance & survey fees</p>
+                <p class="unitDescription">The amount charged by your solicitor to handle the sale and organise the necessary searches and surveys. This can vary depending on the firm you choose, and you could do this yourself.</p>
+                    <div class="unitOfMeasurement">£</div>
+                        <input id="manualConveyance" class="picaarticle inputOption assumptionOption" type="number" tabindex="1" placeholder="1200" min="100" max="2000">
+
+            <p class="unitName">Other costs</p>
+                <p class="unitDescription">Costs such as removal fees, redecorating, the purchase of new furniture and any up front mortgage fees.</p>
+                    <div class="unitOfMeasurement">£</div>
+                        <input id="manualOther" class="picaarticle inputOption assumptionOption" type="number" tabindex="1" placeholder="800" min="0" max="5000">
+
+            <p class="unitName">Lending criteria</p>
+                <p class="unitDescription">How much a mortgage provider is prepared to lend you (typically around 3.5x salary for first time buyers, but can vary)</p>
+                    <div class="unitOfMeasurement">X</div>
+                        <input id="manualLendAmount" class="picaarticle inputOption assumptionOption" type="number" step='0.1' tabindex="1" placeholder="4.5" min="2" max="6">
+
+            <p class="unitName">Stamp duty (non optional)</p>
+                <p class="unitDescription">This is a mandatory tax when buying a propery above £125,000. We've calculated this and added it to the savings you’ll require. <a href="https://www.gov.uk/stamp-duty-land-tax/overview">Read more about stamp duty</a> or <a href="https://www.moneyadviceservice.org.uk/en/tools/house-buying/stamp-duty-calculator">calculate your stamp duty</a> for a given property.</p>
+                	<div class="unitOfMeasurement">£</div>
+                		<div id="stampDutyDisplay"></div>
+        </form>
+    </div>
+
+
+      <div class="editAssumptionsReset" style="background-color:#007F7F; margin-top:20px; color:white;">Reset<img src="images/reset.png" style="width:22px; height:22px; float:right; margin-right:10px;"></div>
+      <div class="editAssumptionsBack" style="background-color:#007F7F; margin-top:20px; color:white;">Save & Return<img src="images/back.png" style="width:28px; height:22px; float:right; margin-right:10px;"></div>
+     </div>
+
+</div><!--end container-->
+
+
+
+<!-- Constant libraries / frameworks -->
+    <script src="js/jquery.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/d3.v3.min.js" charset="utf-8"></script>
+    <script src="js/pym.js" charset="utf-8"></script>
+    <script src="js/odometer.min.js" charset="utf-8"></script>
+    <script type="text/javascript" src="js/chosen.jquery.js"></script>
+ 	<script type="text/javascript" src="js/modernizr.custom.56904.js"></script>
+    <script type="text/javascript" src="js/topojson.js" charset="utf-8"></script>
+    <script type="text/javascript" src="js/queue.js" charset="utf-8"></script>
+    <script type="text/javascript" src="js/ss.js"></script>
+    <script type="text/javascript" src="js/colorbrewer.js" charset="utf-8"></script>
+    <script type="text/javascript" src="js/leaflet.js"></script>
+    <script type="text/javascript" src="js/leaflet-pip.js"></script>
+	<script type="text/javascript" src="js/script.js"></script>
+    <script type="text/javascript" src="js/script_map.js"></script>
+
+    <script>
+
+		  /* Analytics */
+
+		  /* Google */
+		  var _gaq = _gaq || [];
+		  _gaq.push(['_setAccount', 'UA-37894017-1']);
+		  _gaq.push(['_trackPageview']);
+
+
+		  (function() {
+			var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+			ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+			var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+		  })();
+
+
+    </script>
+
+
+  </body>
+</html>

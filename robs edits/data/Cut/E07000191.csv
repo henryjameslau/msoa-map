@@ -1,0 +1,6 @@
+"MSOA_code","MSOA_name","estimateactive","loweractive5","upperactive95","estimateinactive","lowerinactive5","upperinactive95","estimate2xmonth","lower2xmonth5","upper2xmoonth95","LAD17CD","LAD17NM"
+"E02006113","West Somerset 001",0.64,0.61,0.66,0.27,0.22,0.3,0.82,0.8,0.83,"E07000191","West Somerset"
+"E02006114","West Somerset 002",0.64,0.6,0.67,0.25,0.2,0.29,0.82,0.8,0.84,"E07000191","West Somerset"
+"E02006115","West Somerset 003",0.59,0.56,0.63,0.28,0.23,0.32,0.75,0.73,0.77,"E07000191","West Somerset"
+"E02006116","West Somerset 004",0.65,0.6,0.69,0.23,0.18,0.28,0.8,0.77,0.82,"E07000191","West Somerset"
+"E02006117","West Somerset 005",0.64,0.6,0.69,0.26,0.21,0.31,0.79,0.75,0.82,"E07000191","West Somerset"
