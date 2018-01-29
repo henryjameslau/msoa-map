@@ -16,27 +16,27 @@ function initialise() {
 	laCode = null;
 
 	//Statistics
-	housePrice = null;
-	Income_Est = null;
+	// housePrice = null;
+	// Income_Est = null;
 
 	//ASSUMPTIONS
-	lendAmount = 4.5; //subject to change
-	depositAmount = 15; //subject to change
-	balanceAmount = 100-depositAmount; //subject to change
-	Stamp_Duty = null;
-	conveyancingFees = 1200; //subject to change
-	surveyCosts = 0; //subject to change
-	removalCosts = 0; //subject to change
-	otherFees = 800; //subject to change
-
-	E_W_Average = (140000/100)*balanceAmount;
-	E_W_Average_Income_Required = E_W_Average / lendAmount;
-
-	allFees = conveyancingFees + surveyCosts + removalCosts + otherFees;
-	totalSavings = null;
-
-	fromPrice = 0;
-	fromPriceText = "";
+	// lendAmount = 4.5; //subject to change
+	// depositAmount = 15; //subject to change
+	// balanceAmount = 100-depositAmount; //subject to change
+	// Stamp_Duty = null;
+	// conveyancingFees = 1200; //subject to change
+	// surveyCosts = 0; //subject to change
+	// removalCosts = 0; //subject to change
+	// otherFees = 800; //subject to change
+  //
+	// E_W_Average = (140000/100)*balanceAmount;
+	// E_W_Average_Income_Required = E_W_Average / lendAmount;
+  //
+	// allFees = conveyancingFees + surveyCosts + removalCosts + otherFees;
+	// totalSavings = null;
+  //
+	// fromPrice = 0;
+	// fromPriceText = "";
 
 	checkTheSame = null;
 
@@ -100,7 +100,7 @@ function initialise() {
 			//x.innerHTML = "Geolocation is not supported by this browser.";
 		}
 	});
-}
+}//end initialise
 
 function showPosition(position) {
     latitudeValue = position.coords.latitude;
@@ -220,51 +220,51 @@ function drawStats() {
 			//filter the data
 			filtereddata = dvc.dataObj.filter(function(d) {return d.MSOA_name == MSOA});
 
-			housePrice = filtereddata[0].House_Price;
-			Stamp_Duty = filtereddata[0].Stamp_Duty;
-			Income_Est = filtereddata[0].Income_Est;
-			LAname = filtereddata[0].Local_authority_name;
-
-
-			housePriceX = Number(housePrice);
-			Balance_85pcntX = (housePriceX/100)*balanceAmount;
-				BalenceDiv = Balance_85pcntX/lendAmount;
-
-			depositValueX = (housePriceX/100)*depositAmount;
-			Stamp_DutyX = Number(Stamp_Duty);
-			Income_EstX = Number(Income_Est);
-				Income_Est2 = Income_EstX / 7;
-				Income_Est3 = Income_Est2 * 365.24;
+			// housePrice = filtereddata[0].House_Price;
+			// Stamp_Duty = filtereddata[0].Stamp_Duty;
+			// Income_Est = filtereddata[0].Income_Est;
+			// LAname = filtereddata[0].Local_authority_name;
+      //
+      //
+			// housePriceX = Number(housePrice);
+			// Balance_85pcntX = (housePriceX/100)*balanceAmount;
+			// 	BalenceDiv = Balance_85pcntX/lendAmount;
+      //
+			// depositValueX = (housePriceX/100)*depositAmount;
+			// Stamp_DutyX = Number(Stamp_Duty);
+			// Income_EstX = Number(Income_Est);
+			// 	Income_Est2 = Income_EstX / 7;
+			// 	Income_Est3 = Income_Est2 * 365.24;
 
 
 			//Total savings required
 			//this is all assumed costs, plus the deposit, plus stamp duty.
 
-			totalSavings = depositValueX + Stamp_DutyX + allFees;
+			// totalSavings = depositValueX + Stamp_DutyX + allFees;
 
 			//edits footnote to contain correct info
-			d3.select("#footnoteDeposit").text(depositAmount);
-			d3.select("#footnoteSalary").text(lendAmount);
+			// d3.select("#footnoteDeposit").text(depositAmount);
+			// d3.select("#footnoteSalary").text(lendAmount);
+      //
+      //
+			// //puts stamp duty value in assumptions view
+			// d3.select("#stampDutyDisplay").text(numberFormat(Stamp_DutyX));
 
-
-			//puts stamp duty value in assumptions view
-			d3.select("#stampDutyDisplay").text(numberFormat(Stamp_DutyX));
-
-			window.odometerOptions = {
-			  format: '(,ddd)',
-			  duration: 1000, // Change how long the javascript expects the CSS animation to take
-			};
-
-			//d3.select("#savingsOf").text("£0")
-			d3.select("#savingsOf").text(numberFormat(totalSavings))
-
-			//d3.select("#propertyPrice").text("£0")
-			d3.select("#propertyPrice").text(numberFormat(housePriceX))
-
-			//d3.select("#householdIncome").text("£0")
-			d3.select("#householdIncome").text(numberFormat(Income_Est3))
-
-			d3.select("#assumptionWrapper").transition().delay(1000).duration(1000).style("display","block").style("opacity","1");
+			// window.odometerOptions = {
+			//   format: '(,ddd)',
+			//   duration: 1000, // Change how long the javascript expects the CSS animation to take
+			// };
+      //
+			// //d3.select("#savingsOf").text("£0")
+			// d3.select("#savingsOf").text(numberFormat(totalSavings))
+      //
+			// //d3.select("#propertyPrice").text("£0")
+			// d3.select("#propertyPrice").text(numberFormat(housePriceX))
+      //
+			// //d3.select("#householdIncome").text("£0")
+			// d3.select("#householdIncome").text(numberFormat(Income_Est3))
+      //
+			// d3.select("#assumptionWrapper").transition().delay(1000).duration(1000).style("display","block").style("opacity","1");
 
 			//fire the function dealing with area name displayed
 			areaName();
@@ -284,148 +284,148 @@ function drawStats() {
 //╭╯╰╯┃┃┃╭╮┣╮╭╮╭╯┃╰━╯┃┃┃┃╭╮┃┃┃╰╋━━┃
 //╰━━━┻╯╰╯╰╯╰╯╰╯╱╰━━━┻╯╰┻╯╰┻╯╰━┻━━╯
 
-graphic = $(".resultsChart");
+// graphic = $(".resultsChart");
 function drawGraphic() {
-
-	graphic.empty();
-
-			barheight = 40;
-			margin = {}
-			margin.left = 0;
-			margin.right = 0;
-			margin.top = 0;
-			margin.bottom = 70;
-			graphic_width = graphic.width() - margin.left - margin.right;
-
-			var height = barheight + margin.top + margin.bottom;
-
-			var data = [E_W_Average_Income_Required];
-
-			var x = d3.scale.linear()
-				.domain([0,150000])
-				.range([0,graphic_width]);
-
-			var chart = d3.select(".resultsChart")
-				.attr("width", graphic_width)
-				.attr("height", height);
-
-
-			var bar = chart.append("svg")
-				.attr("width", graphic_width)
-				.attr("height", height)
-				.attr("id","chartAreaStuff")
-
-			//Reset the text value to 0 so it animates up
-			d3.select("#incomeOfNumber").text("");
-
-			//grey backing
-			bar.append("rect")
-				.attr("width", function(d) { return x(150000); })
-				.attr("height", barheight)
-				.attr("transform","translate(0,30)")
-				.attr("fill","#f4f4f4");
-
-			//data bar
-			bar.append("rect")
-				.attr("width",fromPrice)
-				.attr("height", barheight)
-				.attr("transform","translate(0,30)")
-				.attr("fill","#007F7F")
-				.transition().duration(2000).attr("width", function(d) { return x(BalenceDiv); });
-
-			//average bar
-			bar.append("rect")
-				.attr("width","3")
-				.attr("height", barheight + 25)
-				.attr("transform","translate(" + x(E_W_Average_Income_Required) + ",5)")
-				.attr("fill","orange");
-
-
-			//your text (Not SVG, in div above to apply odometer animation)
-			d3.select("#incomeOfNumber").text(numberFormat(BalenceDiv))
-										.style("text-anchor","start")
-										.style("font-size","34px")
-										.style("font-weight","bold")
-										.style("color","#007F7F")
-										.style("margin-top","10px");
-
-			//average text
-			var text = d3.select("#chartAreaStuff")
-                        .append("text")
-							.text("England & Wales average** (£" + numberFormat(E_W_Average_Income_Required) + ")")
-							.attr("x", function(d) { return x(E_W_Average_Income_Required) + 10 })
-							.attr("y","20")
-							.attr("text-anchor","start")
-							.attr("font-size","16px")
-							.attr("fill","grey");
-
-			//axis text
-			var text = d3.select("#chartAreaStuff")
-                        .append("text")
-							.text("£0k")
-							.attr("x","0")
-							.attr("y","95")
-							.attr("text-anchor","start")
-							.attr("font-size","14px")
-							.attr("fill","grey");
-			var text = d3.select("#chartAreaStuff")
-                        .append("text")
-							.text("£50k")
-							.attr("x", function(d) { return x(50000) })
-							.attr("y","95")
-							.attr("text-anchor","middle")
-							.attr("font-size","14px")
-							.attr("fill","grey");
-			var text = d3.select("#chartAreaStuff")
-                        .append("text")
-							.text("£100k")
-							.attr("x", function(d) { return x(100000) })
-							.attr("y","95")
-							.attr("text-anchor","middle")
-							.attr("font-size","14px")
-							.attr("fill","grey");
-			var text = d3.select("#chartAreaStuff")
-                        .append("text")
-							.text("£150k")
-							.attr("x", function(d) { return x(150000) })
-							.attr("y","95")
-							.attr("text-anchor","end")
-							.attr("font-size","14px")
-							.attr("fill","grey");
-
-			//axis tick marks
-			bar.append("rect")
-				.attr("width","1")
-				.attr("height", 10)
-				.attr("transform","translate(" + x(0) + ",70)")
-				.attr("fill","#dadada");
-
-			bar.append("rect")
-				.attr("width","1")
-				.attr("height", 10)
-				.attr("transform","translate(" + x(50000) + ",70)")
-				.attr("fill","#dadada");
-
-			bar.append("rect")
-				.attr("width","1")
-				.attr("height", 10)
-				.attr("transform","translate(" + x(100000) + ",70)")
-				.attr("fill","#dadada");
-
-			bar.append("rect")
-				.attr("width","1")
-				.attr("height", 10)
-				.attr("transform","translate(" + x(149800) + ",70)")
-				.attr("fill","#dadada");
-
-			setTimeout(function() {fromPrice = x(BalenceDiv)},1500);
-
-
-
-			//use pym to calculate dimensions
-		   if (pymChild) {
-		       pymChild.sendHeight();
-		   }
+//
+// 	graphic.empty();
+//
+// 			barheight = 40;
+// 			margin = {}
+// 			margin.left = 0;
+// 			margin.right = 0;
+// 			margin.top = 0;
+// 			margin.bottom = 70;
+// 			graphic_width = graphic.width() - margin.left - margin.right;
+//
+// 			var height = barheight + margin.top + margin.bottom;
+//
+// 			var data = [E_W_Average_Income_Required];
+//
+// 			var x = d3.scale.linear()
+// 				.domain([0,150000])
+// 				.range([0,graphic_width]);
+//
+// 			// var chart = d3.select(".resultsChart")
+// 			// 	.attr("width", graphic_width)
+// 			// 	.attr("height", height);
+//
+//       //
+// 			// var bar = chart.append("svg")
+// 			// 	.attr("width", graphic_width)
+// 			// 	.attr("height", height)
+// 			// 	.attr("id","chartAreaStuff")
+//       //
+// 			// //Reset the text value to 0 so it animates up
+// 			// d3.select("#incomeOfNumber").text("");
+//
+// 			// //grey backing
+// 			// bar.append("rect")
+// 			// 	.attr("width", function(d) { return x(150000); })
+// 			// 	.attr("height", barheight)
+// 			// 	.attr("transform","translate(0,30)")
+// 			// 	.attr("fill","#f4f4f4");
+//
+// 			// //data bar
+// 			// bar.append("rect")
+// 			// 	.attr("width",fromPrice)
+// 			// 	.attr("height", barheight)
+// 			// 	.attr("transform","translate(0,30)")
+// 			// 	.attr("fill","#007F7F")
+// 			// 	.transition().duration(2000).attr("width", function(d) { return x(BalenceDiv); });
+//
+// 			// //average bar
+// 			// bar.append("rect")
+// 			// 	.attr("width","3")
+// 			// 	.attr("height", barheight + 25)
+// 			// 	.attr("transform","translate(" + x(E_W_Average_Income_Required) + ",5)")
+// 			// 	.attr("fill","orange");
+//
+//
+// 			// //your text (Not SVG, in div above to apply odometer animation)
+// 			// d3.select("#incomeOfNumber").text(numberFormat(BalenceDiv))
+// 			// 							.style("text-anchor","start")
+// 			// 							.style("font-size","34px")
+// 			// 							.style("font-weight","bold")
+// 			// 							.style("color","#007F7F")
+// 			// 							.style("margin-top","10px");
+//
+// 			// //average text
+// 			// var text = d3.select("#chartAreaStuff")
+//       //                   .append("text")
+// 			// 				.text("England & Wales average** (£" + numberFormat(E_W_Average_Income_Required) + ")")
+// 			// 				.attr("x", function(d) { return x(E_W_Average_Income_Required) + 10 })
+// 			// 				.attr("y","20")
+// 			// 				.attr("text-anchor","start")
+// 			// 				.attr("font-size","16px")
+// 			// 				.attr("fill","grey");
+//
+// 			// //axis text
+// 			// var text = d3.select("#chartAreaStuff")
+//       //                   .append("text")
+// 			// 				.text("£0k")
+// 			// 				.attr("x","0")
+// 			// 				.attr("y","95")
+// 			// 				.attr("text-anchor","start")
+// 			// 				.attr("font-size","14px")
+// 			// 				.attr("fill","grey");
+// 			// var text = d3.select("#chartAreaStuff")
+//       //                   .append("text")
+// 			// 				.text("£50k")
+// 			// 				.attr("x", function(d) { return x(50000) })
+// 			// 				.attr("y","95")
+// 			// 				.attr("text-anchor","middle")
+// 			// 				.attr("font-size","14px")
+// 			// 				.attr("fill","grey");
+// 			// var text = d3.select("#chartAreaStuff")
+//       //                   .append("text")
+// 			// 				.text("£100k")
+// 			// 				.attr("x", function(d) { return x(100000) })
+// 			// 				.attr("y","95")
+// 			// 				.attr("text-anchor","middle")
+// 			// 				.attr("font-size","14px")
+// 			// 				.attr("fill","grey");
+// 			// var text = d3.select("#chartAreaStuff")
+//       //                   .append("text")
+// 			// 				.text("£150k")
+// 			// 				.attr("x", function(d) { return x(150000) })
+// 			// 				.attr("y","95")
+// 			// 				.attr("text-anchor","end")
+// 			// 				.attr("font-size","14px")
+// 			// 				.attr("fill","grey");
+//
+// 			// //axis tick marks
+// 			// bar.append("rect")
+// 			// 	.attr("width","1")
+// 			// 	.attr("height", 10)
+// 			// 	.attr("transform","translate(" + x(0) + ",70)")
+// 			// 	.attr("fill","#dadada");
+//       //
+// 			// bar.append("rect")
+// 			// 	.attr("width","1")
+// 			// 	.attr("height", 10)
+// 			// 	.attr("transform","translate(" + x(50000) + ",70)")
+// 			// 	.attr("fill","#dadada");
+//       //
+// 			// bar.append("rect")
+// 			// 	.attr("width","1")
+// 			// 	.attr("height", 10)
+// 			// 	.attr("transform","translate(" + x(100000) + ",70)")
+// 			// 	.attr("fill","#dadada");
+//       //
+// 			// bar.append("rect")
+// 			// 	.attr("width","1")
+// 			// 	.attr("height", 10)
+// 			// 	.attr("transform","translate(" + x(149800) + ",70)")
+// 			// 	.attr("fill","#dadada");
+//       //
+// 			// setTimeout(function() {fromPrice = x(BalenceDiv)},1500);
+//       //
+//
+//
+// 			//use pym to calculate dimensions
+// 		   if (pymChild) {
+// 		       pymChild.sendHeight();
+// 		   }
 }
 
 
@@ -438,79 +438,79 @@ function drawGraphic() {
 //╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱┃┃
 //╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╰╯
 
-
-//deals with the changing of assumptions
-d3.select(".editAssumptions").on("click", function() {
-	d3.select("#toolView").transition().duration(525).style("opacity","0").transition().delay(500).style("display","none");
-	d3.select("#assumptionsView").transition().delay(525).duration(525).style("display","block").style("opacity","1");
-	fromPrice = 0; //resets to 0 for full animation effect whon closing view.
-});
-
-				//now the functions that will change the assumption variables
-				d3.select("#manualDeposit").on("change", function(){
-					depositAmount = $("#manualDeposit").val();
-						balanceAmount = 100-depositAmount;
-						E_W_Average = (140000/100)*balanceAmount;
-						E_W_Average_Income_Required = E_W_Average / lendAmount;
-						fromPrice = 0;
-				});
-
-				d3.select("#manualConveyance").on("change", function(){
-					conveyancingFees = $("#manualConveyance").val();
-						allFees = Number(conveyancingFees) + Number(surveyCosts) + Number(removalCosts) + Number(otherFees);
-						fromPrice = 0;
-				});
-
-				d3.select("#manualOther").on("change", function(){
-					otherFees = $("#manualOther").val();
-						allFees = Number(conveyancingFees) + Number(surveyCosts) + Number(removalCosts) + Number(otherFees);
-						fromPrice = 0;
-				});
-
-				d3.select("#manualLendAmount").on("change", function(){
-					lendAmount = $("#manualLendAmount").val();
-						E_W_Average_Income_Required = E_W_Average / lendAmount;
-						fromPrice = 0;
-				});
-
-
-//reset stuff
-d3.select(".editAssumptionsReset").on("click", function(){
-	$("#manualDeposit").val(15);
-						depositAmount = $("#manualDeposit").val();
-						balanceAmount = 100-depositAmount;
-						E_W_Average = (140000/100)*balanceAmount;
-						E_W_Average_Income_Required = E_W_Average / lendAmount;
-						fromPrice = 0;
-	$("#manualConveyance").val(1200);
-						conveyancingFees = $("#manualConveyance").val();
-						allFees = Number(conveyancingFees) + Number(surveyCosts) + Number(removalCosts) + Number(otherFees);
-						fromPrice = 0;
-	$("#manualOther").val(800);
-						otherFees = $("#manualOther").val();
-						allFees = Number(conveyancingFees) + Number(surveyCosts) + Number(removalCosts) + Number(otherFees);
-						fromPrice = 0;
-	$("#manualLendAmount").val(4.5);
-						lendAmount = $("#manualLendAmount").val();
-						E_W_Average_Income_Required = E_W_Average / lendAmount;
-						fromPrice = 0;
-});
-
-d3.select(".editAssumptionsBack").on("click", function() {
-	d3.select("#assumptionsView").transition().duration(525).style("opacity","0").transition().delay(500).style("display","none");
-	d3.select("#toolView").transition().delay(525).duration(525).style("display","block").style("opacity","1");
-
-	setTimeout(function() {
-
-			myValue = $("#pcText").val();
-			myValue = myValue.toUpperCase();
-
-				//manual method for area lookup
-				myValue2 = myValue.replace(/\s+/g, '');
-
-				getCodes1(myValue2);
-	},550);
-});
+//
+// //deals with the changing of assumptions
+// d3.select(".editAssumptions").on("click", function() {
+// 	d3.select("#toolView").transition().duration(525).style("opacity","0").transition().delay(500).style("display","none");
+// 	d3.select("#assumptionsView").transition().delay(525).duration(525).style("display","block").style("opacity","1");
+// 	fromPrice = 0; //resets to 0 for full animation effect whon closing view.
+// });
+//
+// 				//now the functions that will change the assumption variables
+// 				d3.select("#manualDeposit").on("change", function(){
+// 					depositAmount = $("#manualDeposit").val();
+// 						balanceAmount = 100-depositAmount;
+// 						E_W_Average = (140000/100)*balanceAmount;
+// 						E_W_Average_Income_Required = E_W_Average / lendAmount;
+// 						fromPrice = 0;
+// 				});
+//
+// 				d3.select("#manualConveyance").on("change", function(){
+// 					conveyancingFees = $("#manualConveyance").val();
+// 						allFees = Number(conveyancingFees) + Number(surveyCosts) + Number(removalCosts) + Number(otherFees);
+// 						fromPrice = 0;
+// 				});
+//
+// 				d3.select("#manualOther").on("change", function(){
+// 					otherFees = $("#manualOther").val();
+// 						allFees = Number(conveyancingFees) + Number(surveyCosts) + Number(removalCosts) + Number(otherFees);
+// 						fromPrice = 0;
+// 				});
+//
+// 				d3.select("#manualLendAmount").on("change", function(){
+// 					lendAmount = $("#manualLendAmount").val();
+// 						E_W_Average_Income_Required = E_W_Average / lendAmount;
+// 						fromPrice = 0;
+// 				});
+//
+//
+// //reset stuff
+// d3.select(".editAssumptionsReset").on("click", function(){
+// 	$("#manualDeposit").val(15);
+// 						depositAmount = $("#manualDeposit").val();
+// 						balanceAmount = 100-depositAmount;
+// 						E_W_Average = (140000/100)*balanceAmount;
+// 						E_W_Average_Income_Required = E_W_Average / lendAmount;
+// 						fromPrice = 0;
+// 	$("#manualConveyance").val(1200);
+// 						conveyancingFees = $("#manualConveyance").val();
+// 						allFees = Number(conveyancingFees) + Number(surveyCosts) + Number(removalCosts) + Number(otherFees);
+// 						fromPrice = 0;
+// 	$("#manualOther").val(800);
+// 						otherFees = $("#manualOther").val();
+// 						allFees = Number(conveyancingFees) + Number(surveyCosts) + Number(removalCosts) + Number(otherFees);
+// 						fromPrice = 0;
+// 	$("#manualLendAmount").val(4.5);
+// 						lendAmount = $("#manualLendAmount").val();
+// 						E_W_Average_Income_Required = E_W_Average / lendAmount;
+// 						fromPrice = 0;
+// });
+//
+// d3.select(".editAssumptionsBack").on("click", function() {
+// 	d3.select("#assumptionsView").transition().duration(525).style("opacity","0").transition().delay(500).style("display","none");
+// 	d3.select("#toolView").transition().delay(525).duration(525).style("display","block").style("opacity","1");
+//
+// 	setTimeout(function() {
+//
+// 			myValue = $("#pcText").val();
+// 			myValue = myValue.toUpperCase();
+//
+// 				//manual method for area lookup
+// 				myValue2 = myValue.replace(/\s+/g, '');
+//
+// 				getCodes1(myValue2);
+// 	},550);
+// });
 
 
 
