@@ -1,0 +1,8 @@
+"MSOA_code","MSOA_name","estimateactive","loweractive5","upperactive95","estimateinactive","lowerinactive5","upperinactive95","estimate2xmonth","lower2xmonth5","upper2xmoonth95","LAD17CD","LAD17NM"
+"E02004229","West Devon 001",0.6,0.57,0.64,0.23,0.18,0.28,0.79,0.76,0.81,"E07000047","West Devon"
+"E02004230","West Devon 002",0.62,0.59,0.64,0.23,0.18,0.27,0.8,0.78,0.82,"E07000047","West Devon"
+"E02004231","West Devon 003",0.69,0.66,0.72,0.19,0.14,0.24,0.83,0.81,0.86,"E07000047","West Devon"
+"E02004232","West Devon 004",0.67,0.64,0.71,0.2,0.15,0.25,0.82,0.8,0.85,"E07000047","West Devon"
+"E02004233","West Devon 005",0.69,0.67,0.71,0.19,0.14,0.23,0.86,0.84,0.87,"E07000047","West Devon"
+"E02004234","West Devon 006",0.7,0.67,0.73,0.19,0.14,0.23,0.85,0.83,0.87,"E07000047","West Devon"
+"E02004235","West Devon 007",0.7,0.67,0.72,0.19,0.14,0.23,0.86,0.84,0.87,"E07000047","West Devon"

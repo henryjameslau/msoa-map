@@ -1,0 +1,2 @@
+"MSOA_code","MSOA_name","estimateactive","loweractive5","upperactive95","estimateinactive","lowerinactive5","upperinactive95","estimate2xmonth","lower2xmonth5","upper2xmoonth95","LAD17CD","LAD17NM"
+"E02000001","City of London 001",0.76,0.74,0.79,0.15,0.09,0.19,0.89,0.87,0.9,"E09000001","City of London"

@@ -1,0 +1,7 @@
+"MSOA_code","MSOA_name","estimateactive","loweractive5","upperactive95","estimateinactive","lowerinactive5","upperinactive95","estimate2xmonth","lower2xmonth5","upper2xmoonth95","LAD17CD","LAD17NM"
+"E02005788","Ryedale 001",0.68,0.63,0.71,0.2,0.15,0.25,0.84,0.81,0.86,"E07000167","Ryedale"
+"E02005789","Ryedale 002",0.62,0.59,0.66,0.26,0.21,0.3,0.81,0.78,0.83,"E07000167","Ryedale"
+"E02005790","Ryedale 003",0.68,0.64,0.72,0.2,0.14,0.24,0.84,0.81,0.86,"E07000167","Ryedale"
+"E02005791","Ryedale 004",0.61,0.57,0.65,0.26,0.21,0.31,0.78,0.75,0.81,"E07000167","Ryedale"
+"E02005794","Ryedale 007",0.67,0.63,0.72,0.2,0.14,0.25,0.84,0.81,0.86,"E07000167","Ryedale"
+"E02006870","Ryedale 008",0.58,0.55,0.61,0.3,0.26,0.34,0.76,0.74,0.77,"E07000167","Ryedale"
