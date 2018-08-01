@@ -225,7 +225,7 @@ function getCodes2(lat,lng)    {
 		{breaks = ss.jenks(values, 5);}
 	else {breaks = dvc.config.ons.breaks[a];};
 
-	layerx = L.tileLayer('http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}@2x.png',{
+	layerx = L.tileLayer('https://maps.tilehosting.com/styles/positron/{z}/{x}/{y}.png?key=7rA0yA362pBi9PZxyYlY',{
 	  attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="http://cartodb.com/attributions">CartoDB background</a>'
 	});
 
